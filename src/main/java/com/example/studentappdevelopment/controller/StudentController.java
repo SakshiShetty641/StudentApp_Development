@@ -28,6 +28,11 @@ public class StudentController {
     public Student updateStudent(@RequestBody Student students) {
         return studentService.updateStudent(students);
     }
+
+    @DeleteMapping(value = "/deletestudent")
+    public String deleteStudent(@RequestParam int id) {
+        return studentService.deleteStudent(id);
+    }
 }
 
 
