@@ -34,6 +34,14 @@ public class StudentService {
         }
         return "Record does not exists with this id : " + id;
     }
+
+    public Student getStudentById(int id) {
+        Optional<Student> studentEntity = studentRepository.findById(id);
+        if(studentEntity.isPresent()) {
+            return studentEntity.get();
+        }
+        return null;
+    }
 }
 
 

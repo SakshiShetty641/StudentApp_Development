@@ -33,6 +33,12 @@ public class StudentController {
     public String deleteStudent(@RequestParam int id) {
         return studentService.deleteStudent(id);
     }
+
+    @GetMapping(value = "/get-student-by-id")
+    public Student getStudentById(@RequestParam int id) {
+        return studentService.getStudentById(id);
+    }
+
 }
 
 
