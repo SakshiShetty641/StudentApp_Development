@@ -4,6 +4,8 @@ import com.example.studentappdevelopment.entity.Student;
 import com.example.studentappdevelopment.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -18,5 +20,10 @@ public class StudentController {
     @GetMapping(value = "/students")
     public List<Student> students() {
         return studentService.students();
+    }
+
+    @PostMapping(value = "/student")
+    public Student addStudent(@RequestBody Student students) {
+        return studentService.addStudent(students);
     }
 }
