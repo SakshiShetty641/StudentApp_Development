@@ -1,5 +1,6 @@
 package com.example.studentappdevelopment.controller;
 
+import com.example.studentappdevelopment.dto.StudentDTO;
 import com.example.studentappdevelopment.entity.Student;
 import com.example.studentappdevelopment.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,14 @@ public class StudentController {
     }
 
     @PostMapping(value = "/student")
-    public Student addStudent(@RequestBody Student students) {
-        return studentService.addStudent(students);
+    public Student addStudent(@RequestBody StudentDTO studentDTO) {
+        return studentService.addStudent(studentDTO);
     }
 
     @PutMapping(value = "/updatestudent")
-    public Student updateStudent(@RequestBody Student students) {
-        return studentService.updateStudent(students);
+    public Student updateStudent( @PathVariable int id, @RequestBody StudentDTO studentDTO) { {
+            return studentService.updateStudent(id, studentDTO);
+        }
     }
 
     @DeleteMapping(value = "/deletestudent")

@@ -1,6 +1,7 @@
 package com.example.studentappdevelopment.service;
 
 import com.example.studentappdevelopment.entity.Student;
+import com.example.studentappdevelopment.dto.StudentDTO;
 import com.example.studentappdevelopment.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,12 +19,25 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public Student addStudent(Student students) {
-        return studentRepository.save(students);
+    public Student addStudent(StudentDTO studentDTO) {
+        Student studentEntity = new Student();
+        studentEntity.setFirstName(studentDTO.getFirstName());
+        studentEntity.setLastName(studentDTO.getLastName());
+        studentEntity.setRollNo(studentDTO.getRollNo());
+
+        return studentRepository.save(studentEntity);
     }
 
-    public Student updateStudent(Student students) {
-        return studentRepository.save(students);
+    public Student updateStudent(int id, StudentDTO studentDTO) {
+        Optional<Student> optionalStudentEntity = studentRepository.findById(id);
+        if(optionalStudentEntity.isPresent()) {
+            Student studentEntity = optionalStudentEntity.get();
+            studentEntity.setFirstName(studentDTO.getFirstName());
+            studentEntity.setLastName(studentDTO.getLastName());
+            studentEntity.setRollNo(studentDTO.getRollNo());
+            return studentRepository.save(studentEntity);
+        }
+        return null;
     }
 
     public String deleteStudent(int id) {
